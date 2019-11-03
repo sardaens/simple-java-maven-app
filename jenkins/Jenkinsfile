@@ -1,5 +1,9 @@
 node{
     stage("SCM checkout"){
-        git 'https://github.com/sardaens/simple-java-maven-app.git'
+        git 'https://github.com/sardaens/simple-java-maven-app.git', branch 'master'
     }
+    stage("Mvn package"){
+        sh 'mvn clean package'
+    }
+
 }
