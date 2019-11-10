@@ -1,13 +1,13 @@
 pipeline {
     agent any
+    tools {
+        maven 'maven'
+    }
     stages {
         stage('Build') {
           steps {
-            withMaven(maven: 'maven') {
-
-              // Run the maven build
-              sh "mvn clean verify"
-            }
+            // Run the maven build
+            sh "mvn clean verify"
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
