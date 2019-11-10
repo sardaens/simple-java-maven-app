@@ -7,20 +7,18 @@ pipeline {
     }
     stages {
         stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                    archiveArtifacts 'target/surefire-reports/*.xml'
-                }
-            }
+          withMaven(maven: 'maven') {
+
+            // Run the maven build
+            sh "mvn clean verify"
+          }
+          post {
+              always {
+                  junit 'target/surefire-reports/*.xml'
+                  archiveArtifacts 'target/surefire-reports/*.xml'
+              }
+          }
+
         }
         stage('Sonarqube') {
             environment {
