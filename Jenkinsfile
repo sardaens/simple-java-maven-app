@@ -8,12 +8,12 @@ pipeline {
           steps {
             // Run the maven build
             sh "mvn clean verify"
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                    archiveArtifacts 'target/surefire-reports/*.xml'
-                }
-            }
+          }
+          post {
+              always {
+                  junit 'target/surefire-reports/*.xml'
+                  archiveArtifacts 'target/surefire-reports/*.xml'
+              }
           }
         }
         stage('Sonarqube') {
