@@ -1,18 +1,21 @@
 pipeline {
+    agent {
+    }
     stages {
         stage('Build') {
-          withMaven(maven: 'maven') {
+          steps {
+            withMaven(maven: 'maven') {
 
-            // Run the maven build
-            sh "mvn clean verify"
+              // Run the maven build
+              sh "mvn clean verify"
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                    archiveArtifacts 'target/surefire-reports/*.xml'
+                }
+            }
           }
-          post {
-              always {
-                  junit 'target/surefire-reports/*.xml'
-                  archiveArtifacts 'target/surefire-reports/*.xml'
-              }
-          }
-
         }
         stage('Sonarqube') {
             environment {
