@@ -49,6 +49,26 @@ public class AppTest
         } catch (AssertionError e) {
             fail("add null dont retrun 0");
         }
+        
+        try {
+            assertEquals(0, new MathService().add(null, 5));
+        } catch (AssertionError e) {
+            fail("add null dont retrun 0");
+        }
+        
+        try {
+            assertEquals(0, new MathService().add(5, null));
+        } catch (AssertionError e) {
+            fail("add null dont retrun 0");
+        }
+
+        try {
+            assertEquals(5, new MathService().add(3, 2));
+        } catch (AssertionError e) {
+            fail("add 3,2 dont return 5");
+        }
+
+        
     }
     
     
