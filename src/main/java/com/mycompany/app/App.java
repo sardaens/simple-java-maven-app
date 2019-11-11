@@ -8,7 +8,9 @@ public class App
 
     private final String message = "Hello World!";
 
-    public App() {}
+    public App() {
+    	// empty for a good reason ;-)
+    }
 
     public static void main(String[] args) {
         System.out.println(new App().getMessage());
