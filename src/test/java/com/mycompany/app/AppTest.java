@@ -39,6 +39,19 @@ public class AppTest
             fail("\"message\" is not \"Hello World!\" 8");
         }
     }
+    
+    @Test
+    public void testMathService()
+    {
+    	
+        try {
+            assertEquals(0, new MathService().add(null, null));
+        } catch (AssertionError e) {
+            fail("add null dont retrun 0");
+        }
+    }
+    
+    
 
     @After
     public void cleanUpStreams() {
